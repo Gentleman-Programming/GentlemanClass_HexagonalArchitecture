@@ -1,6 +1,6 @@
-# GentlemanClass_HexagonalArchitecture
+# Repositorio de ejemplo de Arquitectura Hexagonal con TypeScript y Javascript - Gentleman Class
 
-Repositorio de ejemplo de Arquitectura Hexagonal con TypeScript y Javascript
+
 Este repositorio contiene un ejemplo de aplicación implementada utilizando la arquitectura hexagonal y programación orientada a objetos con TypeScript y Javascript. La arquitectura hexagonal es un patrón de diseño de software que se enfoca en separar la lógica de negocio de los detalles técnicos de la aplicación.
 
 En este ejemplo, se utilizan los conceptos de puertos y adaptadores para separar la lógica de negocio de la infraestructura técnica. Los puertos representan interfaces que permiten la comunicación entre la aplicación y el mundo exterior, mientras que los adaptadores se encargan de implementar estos puertos.
