@@ -1,5 +1,4 @@
 import { ExternalUser } from '../../../repository/app/schemas'
-import { User } from '../../app/schemas'
 import { ForRepoQuerying } from '../../ports/drivens'
 
 const userMock: ExternalUser = {
@@ -10,12 +9,8 @@ const userMock: ExternalUser = {
   user: true,
 }
 
-export class RepoQuerierStub implements ForRepoQuerying {
+export class RepoQuerierAdapter implements ForRepoQuerying {
   getUser(_email: string): Promise<ExternalUser> {
-    return Promise.resolve(userMock)
-  }
-
-  createUser(_user: User): Promise<ExternalUser> {
     return Promise.resolve(userMock)
   }
 }

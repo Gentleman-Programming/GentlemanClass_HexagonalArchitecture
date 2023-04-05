@@ -1,11 +1,13 @@
 export interface User {
-  name: string;
-  email: string;
-  password: string;
+  name: string
+  email: string
+  password: string
+  admin: boolean
+  user: boolean
 }
 
 export interface RepoUser extends User {
-  id: string;
+  id: string
 }
 
-export type ExternalUser = Omit<RepoUser, "password">;
+export type ExternalUser = Omit<RepoUser, 'password'>
