@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 
 app.use(
-  "http://localhost:4000/trpc",
+  "/trpc",
   trpcExpress.createExpressMiddleware({
     router: localTRPCCompose().appRouter,
     createContext,
@@ -18,5 +18,5 @@ app.use(
 );
 
 app.listen(4000, () => {
-  console.log("Server started on http://localhost:4000");
+  console.log("Server started on http://localhost:4000/trpc");
 });
