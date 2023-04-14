@@ -47,11 +47,25 @@ export class ControlPlane implements ForManagingAuthDetails {
       throw new Error('Failed creating Refreshtoken, please check credentials')
     }
 
+    const result = {
+      token,
+      refreshToken,
+    }
+
+    console.log('AUTHDETAILS', result)
+
     return { token, refreshToken }
   }
 
   async getPermissions(email: string): Promise<Permissions> {
     const user = await this.repoQuerier.getUser(email)
+
+    const result = {
+      admin: user?.admin,
+      user: user?.user,
+    }
+
+    console.log('PERMISSIONS', result)
 
     return { admin: user?.admin, user: user?.user }
   }
