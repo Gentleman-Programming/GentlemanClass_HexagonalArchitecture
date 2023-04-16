@@ -56,9 +56,9 @@ export const localTRPCCompose = () => {
   // TRPC DRIVER
   const authTRPCAdapterRouter = authTRPCAdapter(dashboardApiMock, t);
 
-  const appRouter = t.router({
-    auth: authTRPCAdapterRouter,
-  });
+  const appRouter = t.mergeRouters(authTRPCAdapterRouter);
 
   return { appRouter };
 };
+
+export const { appRouter } = localTRPCCompose();

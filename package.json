@@ -10,7 +10,9 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.29.1",
     "@trpc/client": "^10.19.1",
+    "@trpc/react-query": "^10.20.0",
     "@trpc/server": "^10.19.1",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
