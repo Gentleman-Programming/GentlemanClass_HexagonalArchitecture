@@ -6,6 +6,7 @@ import {
   authTRPCAdapter,
 } from "../adapters/drivers";
 import { initTRPC } from "@trpc/server";
+import { RepoQuerierLocalAdapter } from "../adapters/drivens";
 
 const compositionMock = () => {
   // DRIVENS
@@ -29,7 +30,7 @@ const compositionMock = () => {
 };
 
 export const { authenticatorProxyAdapter } = compositionMock();
-/* 
+/*
 const registerMock = {
   name: "John",
   email: "jhon@gmail.com",
@@ -42,12 +43,12 @@ authenticatorProxyAdapter.register(registerMock);
 export const localTRPCCompose = () => {
   // DRIVENS
   const controlAuthenticatorStub = new ControlAuthenticatorStub();
-  const repoQuerierStub = new RepoQuerierStub();
+  const repoQuerierLocal = new RepoQuerierLocalAdapter();
 
   // APP
   const dashboardApiMock = new DashboardApi(
     controlAuthenticatorStub,
-    repoQuerierStub
+    repoQuerierLocal
   );
 
   // TRPC INSTANCE
