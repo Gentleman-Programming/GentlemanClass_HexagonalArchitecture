@@ -16,7 +16,7 @@ export class ControlAuthenticatorStub implements ForControlAuthenticating {
     return Promise.resolve(authDetailsMock);
   }
 
-  getPermissions(_email: string, _password: string): Promise<Permissions> {
+  getPermissions(_userId: string): Promise<Permissions> {
     return Promise.resolve(permissionsMock);
   }
 }
