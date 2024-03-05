@@ -93,4 +93,77 @@ describe("Repository", () => {
     //THEN
     expect(result).toEqual(expectedResult);
   });
+
+  it.concurrent("should get internal user", async () => {
+    // GIVEN
+    const mockedEmail = "samuelcito@gmail.com";
+
+    const expectedResult = {
+      id: "1",
+      name: "Samuel",
+      email: "samuelcito@gmail.com",
+      password: 'password'
+    };
+
+    // WHEN
+    const result = await repositoryMock.getInternalUser(mockedEmail);
+
+    // THEN
+    expect(result).toEqual(expectedResult);
+  });
+
+  it.concurrent("should create user permissions", async () => {
+    // GIVEN
+    const mockedUserId = "1";
+    const mockedPermissions = {
+      admin: true,
+      user: true
+    }
+
+    const expectedResult = {
+      id: "1",
+      userId: '1',
+      admin: true,
+      user: true
+    };
+
+    // WHEN
+    const result = await repositoryMock.createUserPermissions(mockedUserId, mockedPermissions);
+
+    // THEN
+    expect(result).toEqual(expectedResult);
+  });
+
+  it.concurrent("should get user permissions", async () => {
+    // GIVEN
+    const mockedUserId = "1";
+
+    const expectedResult = {
+      id: "1",
+      userId: '1',
+      admin: true,
+      user: true
+    };
+
+    // WHEN
+    const result = await repositoryMock.getUserPermissions(mockedUserId);
+
+    // THEN
+    expect(result).toEqual(expectedResult);
+  });
+
+  it.concurrent(
+    "should throw error when permissions does not exists for user",
+    async () => {
+      // GIVEN
+      const mockUserId = "2";
+
+      // WHEN
+
+      // THEN
+      await expect(
+        repositoryMock.getUserPermissions(mockUserId)
+      ).rejects.toThrowError("Permissions not found");
+    }
+  );
 });
