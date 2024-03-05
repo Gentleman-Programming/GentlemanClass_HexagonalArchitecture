@@ -12,3 +12,5 @@ export const compositionMock = () => {
     userManagerProxy,
   };
 };
+
+export const { userManagerProxy } = compositionMock();
