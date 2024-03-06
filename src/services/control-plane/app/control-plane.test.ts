@@ -1,14 +1,13 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { LoggerStub, RepoQuerierStubAdapter } from "../adapters/drivens";
+import { RepoQuerierStubAdapter } from "../adapters/drivens";
 import { ControlPlane } from "./control-plane";
 
 describe("ControlPlane", () => {
   const repoQuerierstub = new RepoQuerierStubAdapter();
-  const loggerStub = new LoggerStub();
-  let controlPlane = new ControlPlane(repoQuerierstub, loggerStub);
+  let controlPlane = new ControlPlane(repoQuerierstub);
 
   beforeEach(() => {
-    controlPlane = new ControlPlane(repoQuerierstub, loggerStub);
+    controlPlane = new ControlPlane(repoQuerierstub);
   });
 
   it.concurrent("should get auth details", async () => {
