@@ -1,6 +1,5 @@
 import { ForMonitoring } from "../ports/drivens";
 import { ForManagingUser } from "../ports/drivers";
-import { ForManagingPermission } from "../ports/drivers/for-managing-permission";
 import {
   ExternalUser,
   Permissions,
@@ -9,7 +8,7 @@ import {
   UserPermission,
 } from "./schemas";
 
-export class Repository implements ForManagingUser, ForManagingPermission {
+export class Repository implements ForManagingUser {
   private userList: RepoUser[] = [];
   private userPermissionList: UserPermission[] = [];
   constructor(private readonly logger: ForMonitoring) {}
@@ -74,7 +73,7 @@ export class Repository implements ForManagingUser, ForManagingPermission {
     permissions: Permissions
   ): Promise<UserPermission> {
     const newUserPermission: UserPermission = {
-      id: String(this.userList.length + 1),
+      id: crypto.randomUUID(),
       userId,
       admin: permissions.admin,
       user: permissions.user,
