@@ -3,7 +3,7 @@ import { RepoUser } from "../../../repository/app/schemas";
 import { Permissions } from "../../app/schemas/auth";
 import { ForRepoQuerying } from "../../ports/drivens";
 
-export class RepoQuerierStubAdapter implements ForRepoQuerying {
+export class RepoQuerierLocalAdapter implements ForRepoQuerying {
   async getUser(email: string): Promise<RepoUser> {
     const user = userManagerProxy.getInternalUser(email)
 
