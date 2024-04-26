@@ -7,7 +7,7 @@ export class Repository implements ForManagingUser {
   constructor(private readonly logger: ForMonitoring) {}
 
   async getUser(email: string): Promise<ExternalUser> {
-    const user = this.userList.find((user) => user.email === email);
+    const user = this.userList.find((u) => user.email === email);
     if (!user) {
       this.logger.log("GetUser", "User not found");
       throw new Error("User not found");
@@ -20,7 +20,7 @@ export class Repository implements ForManagingUser {
   }
 
   async createUser(user: User): Promise<ExternalUser> {
-    const userExists = this.userList.find((user) => user.email === user.email);
+    const userExists = this.userList.find((u) => u.email === user.email);
     if (userExists) {
       this.logger.log("CreateUser", "User already exists");
       throw new Error("User already exists");
