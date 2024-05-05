@@ -14,11 +14,10 @@ export class DashboardApi implements ForAuthenticating {
       email,
       password
     );
-    const permissions = await this.controlAuthenticator.getPermissions(
-      email,
-      password
-    );
     const user = await this.repoQuerier.getUser(email);
+
+    const permissions = await this.controlAuthenticator.getPermissions(user.id);
+
     const result = {
       ...user,
       ...authDetails,
@@ -37,8 +36,7 @@ export class DashboardApi implements ForAuthenticating {
       user.password
     );
     const permissions = await this.controlAuthenticator.getPermissions(
-      user.email,
-      user.password
+      newUser.id
     );
 
     const result = {

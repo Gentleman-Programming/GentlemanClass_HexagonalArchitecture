@@ -93,4 +93,22 @@ describe("Repository", () => {
     //THEN
     expect(result).toEqual(expectedResult);
   });
+
+  it.concurrent("should get internal user", async () => {
+    // GIVEN
+    const mockedEmail = "samuelcito@gmail.com";
+
+    const expectedResult = {
+      id: "1",
+      name: "Samuel",
+      email: "samuelcito@gmail.com",
+      password: 'password'
+    };
+
+    // WHEN
+    const result = await repositoryMock.getInternalUser(mockedEmail);
+
+    // THEN
+    expect(result).toEqual(expectedResult);
+  });
 });

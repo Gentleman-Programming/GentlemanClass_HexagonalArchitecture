@@ -1,9 +1,16 @@
 import { ForMonitoring } from "../ports/drivens";
 import { ForManagingUser } from "../ports/drivers";
-import { ExternalUser, RepoUser, User } from "./schemas";
+import {
+  ExternalUser,
+  Permissions,
+  RepoUser,
+  User,
+  UserPermission,
+} from "./schemas";
 
 export class Repository implements ForManagingUser {
   private userList: RepoUser[] = [];
+  private userPermissionList: UserPermission[] = [];
   constructor(private readonly logger: ForMonitoring) {}
 
   async getUser(email: string): Promise<ExternalUser> {
@@ -36,5 +43,44 @@ export class Repository implements ForManagingUser {
       name: newUser.name,
       email: newUser.email,
     };
+  }
+
+  async getInternalUser(email: string): Promise<RepoUser> {
+    const user = this.userList.find((user) => user.email === email);
+    if (!user) {
+      this.logger.log("GetInternalUser", "User not found");
+      throw new Error("User not found");
+    }
+
+    return user;
+  }
+
+  async getUserPermissions(userId: string): Promise<UserPermission> {
+    const userPermission = this.userPermissionList.find(
+      (userPermission) => userPermission.userId === userId
+    );
+
+    if (!userPermission) {
+      this.logger.log("GetUserPermissions", "Permissions not found");
+      throw new Error("Permissions not found");
+    }
+
+    return userPermission;
+  }
+
+  async createUserPermissions(
+    userId: string,
+    permissions: Permissions
+  ): Promise<UserPermission> {
+    const newUserPermission: UserPermission = {
+      id: crypto.randomUUID(),
+      userId,
+      admin: permissions.admin,
+      user: permissions.user,
+    };
+
+    this.userPermissionList.push(newUserPermission);
+
+    return newUserPermission;
   }
 }
